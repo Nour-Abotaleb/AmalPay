@@ -62,6 +62,9 @@ body {
   color: #2B9273;
 }
 
+.navbar .icons i {
+  display: none;
+}
 /* Button Styling */
 .btn {
   background-color: #2B9273;
@@ -96,27 +99,6 @@ body {
 .rejected-card {
   background-color: #e87691;
 }
-
-/* Responsive Adjustments for Sidebar and Navbar */
-@media (max-width: 768px) {
-  .sidebar {
-    left: -250px; /* Hide sidebar */
-  }
-
-  .navbar {
-    width: 100%;
-    left: 0;
-  }
-
-  .navbar .icons {
-    display: block;
-  }
-
-  .main-content {
-    margin-left: 0;
-    width: 100%;
-  }
-}
 .completed {
   background-color: rgba(75, 192, 192, 0.2); 
 }
@@ -128,11 +110,24 @@ body {
 .sidebar.active {
   left: 0;
 }
-
+/* Responsive Adjustments for Sidebar and Navbar */
 @media (max-width: 768px) {
+  .sidebar {
+    left: -250px; /* Hide sidebar */
+  }
+  .navbar {
+    width: 100%;
+    left: 0;
+  }
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
   input, select {
     margin-bottom: 10px;
   }
+
   .navbar .icons i {
     display: block;
     font-size: 1.5rem;
