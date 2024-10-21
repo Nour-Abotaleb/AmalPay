@@ -1,0 +1,103 @@
+{
+    "transactions": [
+      {
+        "date": "2024-10-18",
+        "time": "10:30 AM",
+        "amount": 500,
+        "userCode": "sad31d34",
+        "status": "مكتملة"
+      },
+      {
+        "date": "2024-10-17",
+        "time": "3:45 PM",
+        "amount": 300,
+        "userCode": "sad31d34",
+        "status": "مرفوضة"
+      },
+      {
+        "date": "2024-10-16",
+        "time": "12:00 PM",
+        "amount": 750,
+        "userCode": "sad31d34",
+        "status": "مكتملة"
+      },
+      {
+        "date": "2024-10-15",
+        "time": "9:30 AM",
+        "amount": 400,
+        "userCode": "sad312234",
+        "status": "مرفوضة"
+      },
+      {
+        "date": "2024-10-18",
+        "time": "11:00 AM",
+        "amount": 600,
+        "userCode": "4fsasd234",
+        "status": "مكتملة"
+      },
+      {
+        "date": "2024-10-17",
+        "time": "2:00 PM",
+        "amount": 450,
+        "userCode": "4fsasd234",
+        "status": "مكتملة"
+      },
+      {
+        "date": "2024-10-16",
+        "time": "4:30 PM",
+        "amount": 700,
+        "userCode": "4fsasd24",
+        "status": "مرفوضة"
+      },
+      {
+        "date": "2024-10-15",
+        "time": "8:00 AM",
+        "amount": 300,
+        "userCode": "4fsasd24",
+        "status": "مكتملة"
+      },
+      {
+        "date": "2024-10-18",
+        "time": "10:15 AM",
+        "amount": 500,
+        "userCode": "4fsasd24",
+        "status": "مرفوضة"
+      },
+      {
+        "date": "2024-10-17",
+        "time": "1:00 PM",
+        "amount": 800,
+        "userCode": "hgjdb236",
+        "status": "مكتملة"
+      },
+      {
+        "date": "2024-10-16",
+        "time": "6:45 PM",
+        "amount": 600,
+        "userCode": "hgjdb236",
+        "status": "مرفوضة"
+      },
+      {
+        "date": "2024-10-15",
+        "time": "5:30 PM",
+        "amount": 400,
+        "userCode": "hgjdb236",
+        "status": "مكتملة"
+      }
+    ],
+    "users": [
+      {
+        "code": "sad31d34",
+        "name": "حسن محمد"
+      },
+      {
+        "code": "hgjdb236",
+        "name": "محمود علي"
+      },
+      {
+        "code": "4fsasd24",
+        "name": "خالد أحمد"
+      }
+    ]
+  }
+  

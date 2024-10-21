@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+ <!-- Sidebar -->
+ <div class="sidebar">
+    <img src="images/logo amalpay.png" width="250" alt="logo">
+    <h3 style="padding: 15px; text-align: center;">لوحة التحكم</h3>
+    <a href="#">الرئيسية</a>
+    <a href="#">السجل</a>
+    <a href="#">الإعدادات</a>
+    <a href="#">تسجيل الخروج</a>
+</div>
+
+<!-- Top Navbar -->
+<div class="navbar">
+    <div>
+        <span>Admin</span>
+        <img src="images/user.png" width="50" alt="user">
+    </div>
+</div>
+
+<!-- Main Content Area -->
+<div class="main-content">
+    <h2>سجل الحوالات المرسلة</h2>
+
+    <!-- Search Form -->
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="searchBar" placeholder="رمز النزيل أو الاسم">
+        </div>
+        <div class="col-md-2">
+            <input type="date" class="form-control" id="startDateFilter" placeholder="الفترة من">
+        </div>
+        <div class="col-md-2">
+            <input type="date" class="form-control" id="endDateFilter" placeholder="إلــــــــــي">
+        </div>
+        <div class="col-md-2">
+            <select class="form-select" id="statusFilter">
+                <option value="">الحــالــــة</option>
+                <option value="مكتملة">مكتملة</option>
+                <option value="مرفوضة">مرفوضة</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button class="btn w-100" id="searchButton">بحث</button>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4" style="display: none;">
+            <div class="card text-center ">
+                <div class="card-body">
+                    <h5 class="card-title">اسم المستلم</h5>
+                    <p id="recipientName" class="card-text"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center ">
+                <div class="card-body">
+                    <h5 class="card-title">إجمالي المبلغ المحول</h5>
+                    <p id="totalAmount" class="card-text"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card rejected-card text-center ">
+                <div class="card-body">
+                    <h5 class="card-title">عدد الحوالات المرفوضة</h5>
+                    <p id="rejectedCount" class="card-text"></p>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+<!-- Chart for Completed and Rejected Transfers -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+             <canvas id="transfersChart"></canvas>
+        </div>
+    </div>
+    <!-- Transactions Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered" id="transactionTable">
+            <thead class="table-light">
+                <tr>
+                    <th>الكود</th>
+                    <th>المستلم</th>
+                    <th>المبلغ</th>
+                    <th>الوقت</th>
+                    <th>التاريخ</th>
+                    <th>الحالة</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="js/main.js"> </script>
+</body>
+</html>

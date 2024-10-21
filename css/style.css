@@ -1,0 +1,99 @@
+body {
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Sidebar Styling */
+  .sidebar {
+    width: 250px;
+    background-color: #2B9273;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .sidebar a {
+    display: block;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+  }
+
+  .sidebar a:hover {
+    background-color: #5b9987;
+  }
+
+  /* Top Navbar Styling */
+  .navbar {
+    width: calc(100% - 250px);
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+    border-bottom: 1px solid rgb(236, 236, 236);
+  }
+
+  .btn {
+    background-color: #2B9273;
+    color: #fff;
+  }
+.btn:hover {
+    color: #fff;
+    background-color: #258065;
+}
+
+  /* Main Content Area */
+  .main-content {
+    margin-left: 250px;
+    margin-top: 20px;
+    padding: 20px;
+    transition: all 0.3s;
+  }
+  
+  .main-content h2 {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .completed {
+    background-color: rgba(75, 192, 192, 0.2); 
+  }
+  
+  .rejected {
+    background-color: rgba(255, 99, 132, 0.2); 
+  }
+  
+  .card {
+    margin-top: 20px;
+    background-color: #fff;
+    border: none !important;
+    /* border-bottom: 4px solid #2B9273 !important; */
+    background-color: #3fba95;
+    color: #fff;
+    padding: 15px;
+  }
+  .rejected-card {
+    background-color: #e87691;
+  }
+
+  /* Responsive Adjustments for Bootstrap */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100px;
+    }
+
+    .navbar {
+      width: calc(100% - 100px);
+      left: 100px;
+
+    }
+
+    .main-content {
+      margin-left: 100px;
+      width: calc(100% - 100px);
+    }
+
+  }
