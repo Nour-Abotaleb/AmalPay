@@ -30,8 +30,7 @@ function getUserByCode(code) {
     return users.find(user => user.code === code) || null;
 }
 
-// Display transactions in the table
-
+// Function to display transactions in the table
 function displayTransactions(filteredTransactions) {
     const tableBody = document.querySelector("#transactionTable tbody");
     tableBody.innerHTML = ''; // Clear previous table content
@@ -55,6 +54,7 @@ function displayTransactions(filteredTransactions) {
                 <td>${transaction.time}</td>
                 <td>${transaction.date}</td>
                 <td>${transaction.status}</td>
+                <td>${user.governorate || 'N/A'}</td> <!-- New governorate field -->
             `;
             tableBody.appendChild(row);
         });
@@ -182,3 +182,13 @@ function updateCards(filteredTransactions) {
 
     document.getElementById("cardsContainer").style.display = "flex"; // Show cards
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const menuIcon = document.querySelector('.navbar .icons i');
+    const sidebar = document.querySelector('.sidebar');
+  
+    menuIcon.addEventListener('click', function () {
+      sidebar.classList.toggle('active');
+    });
+  });
+  
