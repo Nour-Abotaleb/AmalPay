@@ -169,5 +169,12 @@ canvas {
     display: flex;
     flex-direction: column;
   }
+  .to-date {
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .status {
+    padding-right: 0;
+  }
  
 }
