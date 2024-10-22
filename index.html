@@ -46,18 +46,21 @@
 
     <!-- Search Form -->
     <div class="row mb-3">
-        <div class="col-md-3">
+        <div class="col-md-2 d-flex align-items-center" style="padding-left: 0px;">
             <input type="text" class="form-control" id="searchBar" placeholder="رمز النزيل أو الاسم">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 d-flex align-items-center" style="padding-right: 0px;">
+            <span class="from-date">الفترة من: </span>
             <input type="date" class="form-control" id="startDateFilter" placeholder="الفترة من">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 d-flex to-date align-items-center">
+            <span >إلي: </span>
             <input type="date" class="form-control" id="endDateFilter" placeholder="إلــــــــــي">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3 d-flex status align-items-center">
+            <span>الحــالــــة:</span>
             <select class="form-select" id="statusFilter">
-                <option value="">الحــالــــة</option>
+                <option value="مكتملة">الكل</option>
                 <option value="مكتملة">مكتملة</option>
                 <option value="مرفوضة">مرفوضة</option>
             </select>
@@ -79,7 +82,7 @@
         <div class="col-md-4">
             <div class="card text-center ">
                 <div class="card-body">
-                    <h5 class="card-title">إجمالي المبلغ المحول</h5>
+                    <h5 class="card-title">إجمالي المبالغ المحولة</h5>
                     <p id="totalAmount" class="card-text"></p>
                 </div>
             </div>
@@ -95,11 +98,31 @@
     </div>
     
 <!-- Chart for Completed and Rejected Transfers -->
-    <div class="row mb-4">
+    <!-- <div class="row mb-4">
         <div class="col-md-12">
              <canvas id="transfersChart"></canvas>
         </div>
     </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <canvas id="barChart"></canvas>
+        </div>
+    </div> -->
+  
+    <!-- Container for Charts -->
+    <div class="row mb-4">
+        <div class="canvas-container">
+            <div class="col-md-6">
+                <canvas id="barChart"></canvas>
+            </div>
+            <div class="col-md-4">
+                <canvas id="transfersChart"></canvas>
+            </div>
+         
+        </div>
+    </div>
+
     <!-- Transactions Table -->
     <div class="table-responsive">
         <table class="table table-bordered" id="transactionTable">

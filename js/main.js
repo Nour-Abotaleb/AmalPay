@@ -1,3 +1,4 @@
+
 let transactions = [];
 let users = [];
 
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Initially display all transactions
             displayTransactions(transactions);
+            updateCards(transactions); // Ensure card stats are updated for all transactions
         })
         .catch(error => console.error('Error fetching JSON:', error));
 });
@@ -38,11 +40,7 @@ function displayTransactions(filteredTransactions) {
     if (filteredTransactions.length > 0) {
         filteredTransactions.forEach(transaction => {
             const user = getUserByCode(transaction.userCode);
-
-            // Skip this transaction if there is no matching user
-            if (!user) {
-                return; // Skip to the next transaction
-            }
+            if (!user) return; // Skip if user not found
 
             const row = document.createElement("tr");
             row.classList.add(transaction.status === "مكتملة" ? "completed" : "rejected");
@@ -54,7 +52,7 @@ function displayTransactions(filteredTransactions) {
                 <td>${transaction.time}</td>
                 <td>${transaction.date}</td>
                 <td>${transaction.status}</td>
-                <td>${user.governorate || 'N/A'}</td> <!-- New governorate field -->
+                <td>${user.governorate || 'N/A'}</td>
             `;
             tableBody.appendChild(row);
         });
@@ -68,8 +66,6 @@ function displayTransactions(filteredTransactions) {
 
 // Event listener for search button
 document.querySelector("#searchButton").addEventListener("click", searchTransactions);
-
-// Search and filter transactions based on criteria
 
 function searchTransactions() {
     const searchTerm = document.querySelector("#searchBar").value.toLowerCase();
@@ -85,14 +81,14 @@ function searchTransactions() {
         const matchesDate = (!startDateFilter || new Date(transaction.date) >= new Date(startDateFilter)) &&
                             (!endDateFilter || new Date(transaction.date) <= new Date(endDateFilter));
 
-        const matchesStatus = !statusFilter || transaction.status === statusFilter;
+   
+        const matchesStatus = statusFilter === "الكل" || transaction.status === statusFilter;
 
         return matchesCodeOrName && matchesDate && matchesStatus;
     });
 
     displayTransactions(filteredTransactions);
 
-    // Show the cards only if there are filtered transactions
     if (filteredTransactions.length > 0) {
         updateCards(filteredTransactions);
         document.getElementById("cardsContainer").style.display = "flex"; // Show cards
@@ -101,32 +97,28 @@ function searchTransactions() {
     }
 }
 
-// Hide cards and table when no transactions are found
 function hideCards() {
     document.getElementById("cardsContainer").style.display = "none"; // Hide cards
     document.getElementById("transactionTable").style.display = "none"; // Hide table
 }
 
-// Function to create the chart
-
-let transfersChart;
+let transfersChart, barChart;
 
 function createChart(completedCount, rejectedCount) {
     const ctx = document.getElementById('transfersChart').getContext('2d');
     if (transfersChart) {
-        transfersChart.data.datasets[0].data = [completedCount, rejectedCount]; // Update existing chart
-        transfersChart.update(); // Refresh the chart
+        transfersChart.data.datasets[0].data = [completedCount, rejectedCount];
+        transfersChart.update();
     } else {
         transfersChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'pie',
             data: {
                 labels: ['مكتملة', 'مرفوضة'],
                 datasets: [{
-                    label: 'عدد التحويلات',
                     data: [completedCount, rejectedCount],
                     backgroundColor: [
-                        'rgba(75, 192, 192, 0.2)', // Completed color
-                        'rgba(255, 99, 132, 0.2)'   // Rejected color
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
                     ],
                     borderColor: [
                         'rgba(75, 192, 192, 1)',
@@ -136,12 +128,17 @@ function createChart(completedCount, rejectedCount) {
                 }]
             },
             options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'عدد التحويلات'
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                            }
                         }
                     }
                 }
@@ -149,9 +146,56 @@ function createChart(completedCount, rejectedCount) {
         });
     }
 }
-  
-// Update cards and chart details based on filtered transactions
-  
+
+function createBarChart(completedCount, rejectedCount) {
+    const ctx = document.getElementById('barChart').getContext('2d');
+    if (barChart) {
+        barChart.data.datasets[0].data = [completedCount, rejectedCount];
+        barChart.update();
+    } else {
+        barChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['مكتملة', 'مرفوضة'],
+                datasets: [{
+                    label: 'عدد التحويلات',
+                    data: [completedCount, rejectedCount],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(255, 99, 132, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+}
+
 function updateCards(filteredTransactions) {
     if (filteredTransactions.length === 0) {
         hideCards(); // Hide cards if no transactions are found
@@ -168,21 +212,28 @@ function updateCards(filteredTransactions) {
 
     const completedCount = filteredTransactions.length - rejectedCount;
 
-    // Assuming the first transaction corresponds to the specific inmate
-    const userCode = filteredTransactions[0].userCode;
-    const user = getUserByCode(userCode);
-
     // Update card details
-    document.getElementById("recipientName").innerHTML = `<h5>${user ? user.name : 'Unknown'}</h5>`;
+    document.getElementById("recipientName").innerHTML = `<h5>${filteredTransactions[0].userCode}</h5>`;
     document.getElementById("totalAmount").innerHTML = `<h5>${totalAmount}</h5>`;
     document.getElementById("rejectedCount").innerHTML = `<h5>${rejectedCount}</h5>`;
 
-    // Create or update the chart
-    createChart(completedCount, rejectedCount); // Ensure this is called to update the chart
+    // Create or update the charts
+    createChart(completedCount, rejectedCount); // Update pie chart
+    createBarChart(completedCount, rejectedCount); // Update bar chart
 
     document.getElementById("cardsContainer").style.display = "flex"; // Show cards
 }
 
+// Initialize charts on page load
+document.addEventListener("DOMContentLoaded", function () {
+    const completedCount = transactions.filter(t => t.status === "مكتملة").length;
+    const rejectedCount = transactions.filter(t => t.status === "مرفوضة").length;
+
+    createChart(completedCount, rejectedCount);
+    createBarChart(completedCount, rejectedCount);
+});
+
+// Sidebar toggle functionality
 document.addEventListener('DOMContentLoaded', function () {
     const menuIcon = document.querySelector('.navbar .icons i');
     const sidebar = document.querySelector('.sidebar');
@@ -190,5 +241,4 @@ document.addEventListener('DOMContentLoaded', function () {
     menuIcon.addEventListener('click', function () {
       sidebar.classList.toggle('active');
     });
-  });
-  
+});

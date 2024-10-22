@@ -75,7 +75,20 @@ body {
   color: #fff;
   background-color: #258065;
 }
-
+/* Spacing adjustment for the text beside inputs */
+.d-flex span {
+  white-space: nowrap;
+  margin-right: 10px;
+}
+.to-date {
+  margin-right: 60px;
+}
+.status {
+  margin-right: 20px;
+}
+.from-date, .to-date span, .status span {
+  margin-left: 5px;
+}
 /* Main Content Area */
 .main-content {
   margin-left: 250px;
@@ -94,6 +107,20 @@ body {
   color: #fff;
   padding: 15px;
   border: none;
+}
+
+canvas {
+  width: 300px !important;
+  height: 300px !important;
+} 
+#barChart {
+  width: 400px !important;
+}
+/* Optional styles for better responsiveness */
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .rejected-card {
@@ -132,5 +159,15 @@ body {
     display: block;
     font-size: 1.5rem;
   }
+  .from-date {
+    margin-right: 0px;
+  }
+  .status {
+    margin-right: 0px;
+  }
+  .canvas-container {
+    display: flex;
+    flex-direction: column;
+  }
+ 
 }
-

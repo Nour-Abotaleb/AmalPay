@@ -6,7 +6,7 @@
         "amount": 500,
         "userCode": "sad31d34",
         "status": "مكتملة",
-        "governorate": "Alexandria"
+        "governorate": "عمان"
       },
       {
         "date": "2024-10-17",
@@ -14,7 +14,7 @@
         "amount": 300,
         "userCode": "sad31d34",
         "status": "مرفوضة",
-        "governorate": "Alexandria"
+        "governorate": "عمان"
       },
       {
         "date": "2024-10-16",
@@ -22,7 +22,7 @@
         "amount": 750,
         "userCode": "sad31d34",
         "status": "مكتملة",
-        "governorate": "Alexandria"
+        "governorate": "عمان"
       },
       {
         "date": "2024-10-15",
@@ -30,7 +30,7 @@
         "amount": 400,
         "userCode": "sad312234",
         "status": "مرفوضة",
-        "governorate": "Alexandria"
+        "governorate": "عمان"
       },
       {
         "date": "2024-10-18",
@@ -38,7 +38,7 @@
         "amount": 600,
         "userCode": "4fsasd234",
         "status": "مكتملة",
-        "governorate": "Cairo"
+        "governorate": "الزرقاء"
       },
       {
         "date": "2024-10-17",
@@ -46,7 +46,7 @@
         "amount": 450,
         "userCode": "4fsasd234",
         "status": "مكتملة",
-        "governorate": "Cairo"
+        "governorate": "الزرقاء"
       },
       {
         "date": "2024-10-16",
@@ -54,7 +54,7 @@
         "amount": 700,
         "userCode": "4fsasd24",
         "status": "مرفوضة",
-        "governorate": "Cairo"
+        "governorate": "الزرقاء"
       },
       {
         "date": "2024-10-15",
@@ -62,7 +62,7 @@
         "amount": 300,
         "userCode": "4fsasd24",
         "status": "مكتملة",
-        "governorate": "Cairo"
+        "governorate": "الزرقاء"
       },
       {
         "date": "2024-10-18",
@@ -70,7 +70,7 @@
         "amount": 500,
         "userCode": "4fsasd24",
         "status": "مرفوضة",
-        "governorate": "Cairo"
+        "governorate": "الزرقاء"
       },
       {
         "date": "2024-10-17",
@@ -78,7 +78,7 @@
         "amount": 800,
         "userCode": "hgjdb236",
         "status": "مكتملة",
-        "governorate": "Giza"
+        "governorate": "إربد"
       },
       {
         "date": "2024-10-16",
@@ -86,7 +86,7 @@
         "amount": 600,
         "userCode": "hgjdb236",
         "status": "مرفوضة",
-        "governorate": "Giza"
+        "governorate": "إربد"
       },
       {
         "date": "2024-10-15",
@@ -94,24 +94,24 @@
         "amount": 400,
         "userCode": "hgjdb236",
         "status": "مكتملة",
-        "governorate": "Giza"
+        "governorate": "إربد"
       }
     ],
     "users": [
       {
         "code": "sad31d34",
         "name": "حسن محمد",
-        "governorate": "Alexandria"
+        "governorate": "عمان"
       },
       {
         "code": "hgjdb236",
         "name": "محمود علي",
-        "governorate": "Cairo"
+        "governorate": "الزرقاء"
       },
       {
         "code": "4fsasd24",
         "name": "خالد أحمد",
-        "governorate": "Giza"
+        "governorate": "إربد"
       }
     ]
   }
