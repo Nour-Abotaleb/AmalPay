@@ -178,3 +178,8 @@ canvas {
   }
  
 }
+
+h1 {
+  background-color: rgba(3, 110, 49, 0.5);
+  color: rgba(250, 2, 52, 0.5)
+}

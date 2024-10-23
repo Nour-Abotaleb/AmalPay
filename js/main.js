@@ -2,7 +2,6 @@
 let transactions = [];
 let users = [];
 
-// Initialize cards to empty
 document.getElementById("recipientName").innerHTML = '';
 document.getElementById("totalAmount").innerHTML = '';
 document.getElementById("rejectedCount").innerHTML = '';
@@ -18,29 +17,28 @@ document.addEventListener("DOMContentLoaded", function () {
             transactions = data.transactions;
             users = data.users;
             console.log('Transactions:', transactions);
-            console.log('Users:', users); // Check if data is properly loaded
+            console.log('Users:', users); 
 
-            // Initially display all transactions
             displayTransactions(transactions);
-            updateCards(transactions); // Ensure card stats are updated for all transactions
+            updateCards(transactions); 
         })
         .catch(error => console.error('Error fetching JSON:', error));
 });
 
-// Function to get user by user code
+// get user by user code
 function getUserByCode(code) {
     return users.find(user => user.code === code) || null;
 }
 
-// Function to display transactions in the table
+// display transactions in the table
 function displayTransactions(filteredTransactions) {
     const tableBody = document.querySelector("#transactionTable tbody");
-    tableBody.innerHTML = ''; // Clear previous table content
+    tableBody.innerHTML = ''; 
 
     if (filteredTransactions.length > 0) {
         filteredTransactions.forEach(transaction => {
             const user = getUserByCode(transaction.userCode);
-            if (!user) return; // Skip if user not found
+            if (!user) return; 
 
             const row = document.createElement("tr");
             row.classList.add(transaction.status === "مكتملة" ? "completed" : "rejected");
@@ -57,14 +55,13 @@ function displayTransactions(filteredTransactions) {
             tableBody.appendChild(row);
         });
 
-        document.getElementById("transactionTable").style.display = "table"; // Show table
-        updateCards(filteredTransactions); // Update card details
+        document.getElementById("transactionTable").style.display = "table";
+        updateCards(filteredTransactions); 
     } else {
-        hideCards(); // Hide cards and table if no transactions are found
+        hideCards(); 
     }
 }
 
-// Event listener for search button
 document.querySelector("#searchButton").addEventListener("click", searchTransactions);
 
 function searchTransactions() {
@@ -98,8 +95,8 @@ function searchTransactions() {
 }
 
 function hideCards() {
-    document.getElementById("cardsContainer").style.display = "none"; // Hide cards
-    document.getElementById("transactionTable").style.display = "none"; // Hide table
+    document.getElementById("cardsContainer").style.display = "none"; 
+    document.getElementById("transactionTable").style.display = "none"; 
 }
 
 let transfersChart, barChart;
@@ -117,8 +114,8 @@ function createChart(completedCount, rejectedCount) {
                 datasets: [{
                     data: [completedCount, rejectedCount],
                     backgroundColor: [
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(255, 99, 132, 0.2)'
+                        'rgba(3, 110, 49, 0.5)',
+                        'rgba(250, 2, 52, 0.5)'
                     ],
                     borderColor: [
                         'rgba(75, 192, 192, 1)',
@@ -161,8 +158,8 @@ function createBarChart(completedCount, rejectedCount) {
                     label: 'عدد التحويلات',
                     data: [completedCount, rejectedCount],
                     backgroundColor: [
-                        'rgba(75, 192, 192, 0.5)',
-                        'rgba(255, 99, 132, 0.5)'
+                         'rgba(3, 110, 49, 0.5)',
+                        'rgba(250, 2, 52, 0.5)'
                     ],
                     borderColor: [
                         'rgba(75, 192, 192, 1)',
@@ -198,7 +195,7 @@ function createBarChart(completedCount, rejectedCount) {
 
 function updateCards(filteredTransactions) {
     if (filteredTransactions.length === 0) {
-        hideCards(); // Hide cards if no transactions are found
+        hideCards(); 
         return;
     }
 
@@ -212,19 +209,15 @@ function updateCards(filteredTransactions) {
 
     const completedCount = filteredTransactions.length - rejectedCount;
 
-    // Update card details
     document.getElementById("recipientName").innerHTML = `<h5>${filteredTransactions[0].userCode}</h5>`;
     document.getElementById("totalAmount").innerHTML = `<h5>${totalAmount}</h5>`;
     document.getElementById("rejectedCount").innerHTML = `<h5>${rejectedCount}</h5>`;
 
-    // Create or update the charts
-    createChart(completedCount, rejectedCount); // Update pie chart
-    createBarChart(completedCount, rejectedCount); // Update bar chart
+    createChart(completedCount, rejectedCount);
+    createBarChart(completedCount, rejectedCount); 
 
-    document.getElementById("cardsContainer").style.display = "flex"; // Show cards
+    document.getElementById("cardsContainer").style.display = "flex";
 }
-
-// Initialize charts on page load
 document.addEventListener("DOMContentLoaded", function () {
     const completedCount = transactions.filter(t => t.status === "مكتملة").length;
     const rejectedCount = transactions.filter(t => t.status === "مرفوضة").length;
@@ -233,7 +226,6 @@ document.addEventListener("DOMContentLoaded", function () {
     createBarChart(completedCount, rejectedCount);
 });
 
-// Sidebar toggle functionality
 document.addEventListener('DOMContentLoaded', function () {
     const menuIcon = document.querySelector('.navbar .icons i');
     const sidebar = document.querySelector('.sidebar');
